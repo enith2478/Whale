@@ -5,8 +5,6 @@ window.addEventListener('load', function(){
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
-    // console.log(ctx);
     ctx.strokeStyle = 'white';
     
     class Particle {
@@ -24,9 +22,6 @@ window.addEventListener('load', function(){
             this.image = document.getElementById('star');
         }
         draw(context){
-            // context.beginPath();
-            // context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            // context.fill();
             context.drawImage(this.image, this.x - this.halfImageSize, this.y - this.halfImageSize, this.imageSize, this.imageSize);
         }
         update(){
@@ -106,33 +101,9 @@ window.addEventListener('load', function(){
             this.createParticles();
             this.whale = new Whale(this);
     
-            // What makes the particles react to the mouse 
-            // this.mouse = {
-            //     x: 0,
-            //     y: 0,
-            //     pressed: false,
-            //     radius: 200
-            // }
-    
             window.addEventListener('resize', e => {
                 this.resize(e.target.window.innerWidth, e.target.window.innerHeight);
-            });
-            // thiss block of ConvolverNode, isten to the mouse and work in conjunction with the block that makes particles react to the mouse 
-            // window.addEventListener('mousemove', e => {
-            //     if (this.mouse.pressed){
-            //         this.mouse.x = e.x;
-            //         this.mouse.y = e.y;
-            //     }
-            // });
-            // window.addEventListener('mousedown', e => {
-            //     this.mouse.pressed = true;
-            //     this.mouse.x = e.x;
-            //     this.mouse.y = e.y;
-            // });
-            // window.addEventListener('mouseup', e => {
-            //     this.mouse.pressed = false;
-            // });
-        }
+           
         createParticles(){
             for (let i = 0; i < this.numberOfParticles; i++){
                 this.particles.push(new Particle(this));
@@ -171,6 +142,8 @@ window.addEventListener('load', function(){
             this.canvas.height = height;
             this.width = width;
             this.height = height;
+             this.whale.width = this.spriteWidth * 0.5;
+            this.whale.height = this.spriteHeight * 0.5;
             this.whale.x = this.width * 0.4;
             this.whale.y = this.height * 0.5;
             this.whale.curve = this.height * 0.2;
